@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>奖品列表组件</title>
+  <style>
+  div, p, ul, li {
+    padding: 0;
+    margin: 0
+  }
+  ul, li {
+    list-style: none;
+  }
+
+  body {
+    background: green;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 6.9rem;
+    margin: 0 auto;
+  }
+
+  .item {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 3.3rem;
+    height: 3.55rem;
+    margin: .3rem 0 0;
+    border-radius: .22rem;
+    overflow: hidden;
+  }
+  .item img.pic {
+    display: block;
+    width: 100%;
+    height: 2.1rem;
+  }
+  .item .info {
+    background-color: rgb(255, 254, 229);
+    box-shadow: 0 .1rem .15rem 0 rgba(111, 174, 127, 0.2);
+    width: 3.3rem;
+    height: 1.46rem;
+  }
+  .item .info .name {
+    padding: .28rem 0 0;
+    font-size: .28rem;
+    color: rgb(88, 70, 59);
+    text-align: center;
+    line-height: 1;
+  }
+  .item .info .desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: .17rem 0 0;
+  }
+  .item .info .desc .subTitle {
+    font-size: .22rem;
+    color: rgb(88, 70, 59);
+    padding: 0 0 0 .14rem;
+  }
+  .item .info .desc .jump {
+    background-color: rgb(255, 187, 79);
+    width: 1.13rem;
+    height: .50rem;
+    line-height: .5rem;
+    text-align: center;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    font-size: .22rem;
+    color: rgb(255, 255, 255);
+  }
+
+  </style>
+</head>
+<body>
+
+  <div>
+    <ul class="list">
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+</body>
+</html>

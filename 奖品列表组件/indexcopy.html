@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>奖品列表组件</title>
+  <style>
+  div, p, ul, li {
+    padding: 0;
+    margin: 0
+  }
+  ul, li {
+    list-style: none;
+  }
+
+  body {
+    background: green;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 6.9rem;
+    margin: 0 auto;
+  }
+
+  .item {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 3.3rem;
+    height: 3.55rem;
+    margin: .3rem 0 0;
+    border-radius: .22rem;
+    overflow: hidden;
+  }
+  .item img.pic {
+    display: block;
+    width: 100%;
+    height: 2.1rem;
+  }
+  .item .info {
+    background-color: rgb(255, 254, 229);
+    box-shadow: 0 .1rem .15rem 0 rgba(111, 174, 127, 0.2);
+    width: 3.3rem;
+    height: 1.46rem;
+  }
+  .item .info .name {
+    padding: .28rem 0 0;
+    font-size: .28rem;
+    color: rgb(88, 70, 59);
+    text-align: center;
+    line-height: 1;
+  }
+  .item .info .desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: .17rem 0 0;
+  }
+  .item .info .desc .subTitle {
+    font-size: .22rem;
+    color: rgb(88, 70, 59);
+    padding: 0 0 0 .14rem;
+  }
+  .item .info .desc .jump {
+    background-color: rgb(255, 187, 79);
+    width: 1.13rem;
+    height: .50rem;
+    line-height: .5rem;
+    text-align: center;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    font-size: .22rem;
+    color: rgb(255, 255, 255);
+  }
+
+  </style>
+</head>
+<body>
+
+  <div>
+    <ul class="list">
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+      <li class="item">
+        <img class="pic" src="./img/prize.png" />
+        <div class="info">
+          <div class="name">玖富定制充电宝</div>
+          <div class="desc">
+            <div class="subTitle">团队满5000元可领</div>
+            <div class="jump">领取</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script>
+    let list = [{
+                "id": 61734,
+                "name": "测试内容5221",
+                "prizeImg": "测试内容ne5v",
+                "prizeStatus": 65852,
+                "takeRule": "测试内容l129"
+            },{
+                "id": 61734,
+                "name": "测试内容5221",
+                "prizeImg": "测试内容ne5v",
+                "prizeStatus": 65852,
+                "takeRule": "测试内容l129"
+            },{
+                "id": 61734,
+                "name": "测试内容5221",
+                "prizeImg": "测试内容ne5v",
+                "prizeStatus": 65852,
+                "takeRule": "测试内容l129"
+            }]
+
+
+  // let template = '<li class="item" v-for="item in list>\
+  //       <img class="pic" src="./img/prize.png" />\
+  //       <div class="info">\
+  //         <div class="name">${name}</div>\
+  //         <div class="desc">\
+  //           <div class="subTitle">${takeRule}</div>\
+  //           <div class="jump">领取</div>\
+  //         </div>\
+  //       </div>\
+  //     </li>'
+
+
+
+  function VNode (tag, props, children, text, elem) {
+    // this.tag = tag
+    // this.props = props
+    // this.children = children
+    // this.text = text
+    // this.elem = elem
+    let node = document.createElement(tag)
+    for (let p in props) {
+      node[p] = props[p]
+    }
+  }
+
+  function createElement (tag, props, children) {
+
+    let node = document.createElement(tag)
+    for (let p in props) {
+      node[p] = props[p]
+    }
+    if (children && children.length > 0) {
+      children.forEach(child => {
+        console.log(child)
+        node.appendChild(child)
+      })
+    }
+    return node
+  }
+
+  function createImage (props) {
+    return new VNode ('img', props, undefined, undefined, undefined)
+  }
+
+  function createTextNode (text) {
+    return document.createTextNode(text)
+  }
+
+  function render () {
+    return createElement(
+      'li',
+      {      // props
+        'className': 'item'
+      },
+      [      // children
+        // createImage({ src: './img/prize.png', class: 'pic' }),
+        createElement(
+          'div', 
+          {
+            className: 'info'
+          },
+          [
+            createElement(
+              'div',
+              {
+                className: 'name'
+              },
+              [
+                createTextNode('我是名字')
+              ],
+              undefined,
+              undefined
+            ),
+            createElement(
+              'div',
+              {
+                className: 'desc'
+              },
+              [
+                createElement(
+                  'div',
+                  {
+                    className: 'subTitle'
+                  },
+                  [
+                    createTextNode('我是规则')
+                  ],
+                  undefined,
+                  undefined
+                ),
+                createElement(
+                  'div',
+                  {
+                    className: 'jump'
+                  },
+                  [
+                    createTextNode('领取')
+                  ],
+                  undefined,
+                  undefined
+                )
+              ],
+              undefined,
+              undefined
+            )
+          ],
+          undefined,
+          undefined
+        )
+      ],
+      undefined,
+      undefined
+    )
+  }
+
+  console.log(render())
+  </script>
+</body>
+</html>

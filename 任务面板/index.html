@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务组件</title>
+  <style>
+    div, p, ul, li {
+      padding: 0;
+      margin: 0;
+    }
+    ul, li {
+      list-style: none;
+    }
+    body {
+      font-size: 14px;
+      background: #fffbe0;
+    }
+
+    .wrapper {
+      border-radius: .2rem;
+      overflow: hidden;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 .5rem 0 rgba(255, 177, 85, 0.13);
+      width: 6.2rem;
+      height: 3.5rem;
+    }
+    .hd {
+      background-color: rgb(111, 174, 127);
+      width: 100%;
+      height: .6rem;
+    }
+    .hd .menu {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    .hd .menu-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+    .hd .menu-item.active {
+      background-color: rgb(255, 187, 79);
+    }
+    .bd .content {
+      display: flex;
+    }
+    .bd .content-item {
+      width: 100%;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper" id="swiper">
+    <div class="hd">
+      <ul class="menu">
+        <li class="menu-item active">奖池一</li>
+        <li class="menu-item">奖池二</li>
+        <li class="menu-item">奖池三</li>
+        <li class="menu-item">奖池四</li>
+        <li class="menu-item">奖池五</li>
+      </ul>
+    </div>
+    <div class="bd">
+      <ul class="content">
+        <li class="content-item active">111</li>
+        <li class="content-item">222</li>
+        <li class="content-item">333</li>
+        <li class="content-item">444</li>
+        <li class="content-item">555</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    let swiper = document.querySelector('#swiper')
+
+    let hd = swiper.querySelector('.hd')
+    let menuItems = hd.querySelectorAll('.menu-item')
+
+    let bd = swiper.querySelector('.bd')
+    let content = bd.querySelector('.content')
+    
+    let clickIndex = 0
+
+    hd.addEventListener('click', (e) => {
+      let target = e.target
+      menuItems.forEach((item, index) => {
+        if (item === target) {
+          clickIndex = index
+        }
+        if (item.classList.contains('active')) {
+          item.classList.remove('active')
+        }
+      })
+      target.classList.add('active')
+      
+      content.style.transform = `translateX(${-100 * clickIndex}%)`
+    })
+
+  </script>
+</body>
+</html>

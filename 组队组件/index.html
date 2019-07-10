@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组队组件</title>
+  <style>
+    div, p, li, ul {
+      padding: 0;
+      margin: 0
+    }
+    ul, li {
+      list-style: none;
+    }
+    .wrapper {
+      border-radius: .3rem;
+      background-color: rgb(255, 254, 229);
+      box-shadow: 0 .1rem .15rem 0 rgba(111, 174, 127, 0.2);
+      width: 6.9rem;
+      height: 3.4rem;
+      margin: 0 auto;
+    }
+    .list {
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 .35rem;
+    }
+    .list .item {
+
+    }
+    .list .item .avator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: .04rem solid rgb(249, 228, 164);
+      border-radius: 50%;
+      background: rgb(255, 255, 240) url('./img/increase_icon.png') no-repeat center center;
+      background-size: .36rem .36rem;
+      width: 1rem;
+      height: 1rem;
+      color: rgb(249, 228, 164);
+    }
+    .list .item .name {
+      width: 100%;
+      font-size: .2rem;
+      color: rgb(88, 70, 59);
+      line-height: 1;
+      text-align: center;
+      margin: .23rem 0 0;
+    }
+    .jump {
+      margin: .55rem auto 0;
+      font-size: .22rem;
+      color: rgb(88, 70, 59);
+      text-align: center;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <ul class="list">
+      <li class="item">
+        <div class="avator"></div>
+        <div class="name">Miaolilili</div>
+      </li>
+      <li class="item">
+          <div class="avator"></div>
+          <div class="name">Miaolilili</div>
+      </li>
+      <li class="item">
+          <div class="avator"></div>
+          <div class="name">Miaolilili</div>
+      </li>
+      <li class="item">
+          <div class="avator"></div>
+          <div class="name">Miaolilili</div>
+      </li>
+      <li class="item">
+          <div class="avator"></div>
+          <div class="name">Miaolilili</div>
+      </li>
+    </ul>
+    <div class="jump">查看队友贡献值</div>
+  </div>
+</body>
+</html>

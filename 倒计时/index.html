@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>倒计时</title>
+  <style>
+    div {
+      padding: 0;
+      margin: 0
+    }
+    body {
+      font-size: 14px;
+    }
+    span {
+      display: inline-block;
+      background-color: rgb(111, 174, 127);
+      color: #fff;
+      padding: 0 .1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer">
+      距离结束还有<span class="day">02</span>天<span class="hours">00</span>小时<span class="minutes">00</span>分<span class="seconds">00</span>秒
+  </div>
+
+  <script>
+    let $timers = document.querySelector('.timer')
+    let $days = $timers.querySelector('.day')
+    let $hours = $timers.querySelector('.hours')
+    let $minutes = $timers.querySelector('.minutes')
+    let $seconds = $timers.querySelector('.seconds')
+
+    let times = 1000000
+    let rAF = window.requestAnimationFrame
+    let nowTimes = Date.now()
+    let step = function () {
+      times -= Math.ceil((Date.now() - nowTimes) / 1000)
+      nowTimes = Date.now()
+      if (times > 0) {
+        let newDate = formartDate(times)
+        setHtml($days, newDate.days)
+        setHtml($hours, newDate.hours)
+        setHtml($minutes, newDate.minutes)
+        setHtml($seconds, newDate.seconds)
+        rAF(step)
+      } else {
+        times = 0
+      }
+    }
+    rAF(step)
+
+
+    function setHtml (dom, html) {
+      dom.innerHTML = html
+    }
+
+    function formartDate (timestamp) {
+      // 以秒不单位
+      let days = Math.floor(timestamp / (60 * 60 * 24))
+      let hours = Math.floor(timestamp % (60 * 60 * 24) / (60 * 60))
+      let minutes = Math.floor(timestamp % (60 * 60 * 24) % (60 * 60) / 60)
+      let seconds = Math.floor(timestamp % (60 * 60 * 24) % (60 * 60) % 60)
+      let milliSeconds = Math.floor(timestamp % (60 * 60 * 24) % (60 * 60) % 60 )
+      return {
+        days,
+        hours,
+        minutes,
+        seconds,
+        milliSeconds
+      }
+    }
+  </script>
+</body>
+</html>

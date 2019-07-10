@@ -194,14 +194,14 @@
     return document.createTextNode(text)
   }
 
-  function render () {
+  function createPrizeBlock (name, takeRule, imgSrc, status) {
     return createElement(
       'li',
       {      // props
         'className': 'item'
       },
       [      // children
-        // createImage({ src: './img/prize.png', class: 'pic' }),
+        // createImage({ src: imgSrc, class: 'pic' }),
         createElement(
           'div', 
           {
@@ -214,10 +214,8 @@
                 className: 'name'
               },
               [
-                createTextNode('我是名字')
-              ],
-              undefined,
-              undefined
+                createTextNode(name)
+              ]
             ),
             createElement(
               'div',
@@ -231,10 +229,8 @@
                     className: 'subTitle'
                   },
                   [
-                    createTextNode('我是规则')
-                  ],
-                  undefined,
-                  undefined
+                    createTextNode(takeRule)
+                  ]
                 ),
                 createElement(
                   'div',
@@ -243,17 +239,11 @@
                   },
                   [
                     createTextNode('领取')
-                  ],
-                  undefined,
-                  undefined
+                  ]
                 )
-              ],
-              undefined,
-              undefined
+              ]
             )
-          ],
-          undefined,
-          undefined
+          ]
         )
       ],
       undefined,
@@ -261,7 +251,16 @@
     )
   }
 
-  console.log(render())
+  let frag = document.createDocumentFragment()
+  list.forEach(item => {
+    let itemNode = createPrizeBlock(item.name, item.takeRule, item.prizeImg, item.prizeStatus)
+    console.log(item)
+    frag.appendChild(itemNode)
+  })
+
+
+  let $list = document.querySelector('.list')
+  $list.appendChild(frag)
   </script>
 </body>
 </html>

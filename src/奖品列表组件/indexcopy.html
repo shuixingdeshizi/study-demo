@@ -128,19 +128,19 @@
     let list = [{
                 "id": 61734,
                 "name": "测试内容5221",
-                "prizeImg": "测试内容ne5v",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
                 "prizeStatus": 65852,
                 "takeRule": "测试内容l129"
             },{
                 "id": 61734,
                 "name": "测试内容5221",
-                "prizeImg": "测试内容ne5v",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
                 "prizeStatus": 65852,
                 "takeRule": "测试内容l129"
             },{
                 "id": 61734,
                 "name": "测试内容5221",
-                "prizeImg": "测试内容ne5v",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
                 "prizeStatus": 65852,
                 "takeRule": "测试内容l129"
             }]
@@ -186,8 +186,12 @@
     return node
   }
 
-  function createImage (props) {
-    return new VNode ('img', props, undefined, undefined, undefined)
+  function createImage (props = {}) {
+    let image = new Image()
+    for (let p in props) {
+      image[p] = props[p]
+    }
+    return image
   }
 
   function createTextNode (text) {
@@ -201,7 +205,7 @@
         'className': 'item'
       },
       [      // children
-        // createImage({ src: imgSrc, class: 'pic' }),
+        createImage({ src: imgSrc, className: 'pic' }),
         createElement(
           'div', 
           {

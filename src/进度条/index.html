@@ -82,22 +82,37 @@
   .tips {
     display: block;
     position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
+    right: 0;
+    top: -0.8rem;
     background-color: rgb(255, 187, 79);
-    position: absolute;
     width: 2.5rem;
     height: .44rem;
     color: #fff;
     text-align: center;
+  }
+  .tips .arrow {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    display: block;
+    content: '';
+
+  }
+  .tips .arrow.left-arrow {
+    left: 0;
+    border-top: rgb(255, 187, 79) .1rem solid;
+    border-right: transparent .1rem solid;
+  }
+  .tips .arrow.right-arrow {
+    right: 0;
+    border-top: rgb(255, 187, 79) .1rem solid;
+    border-left: transparent .1rem solid;
   }
   </style>
 </head>
 <body>
   <div class="progress-wrapper">
     <div class="progress-inner">
-      <div class="tips">团队出借进度49999.58元</div>
       <div class="progress-container">
         <div class="progress">
           <div class="circle-group level-circle">
@@ -105,7 +120,12 @@
                 <span class="name">0元</span>
               </span> -->
           </div>
-          <div class="percent"></div>
+          <!-- 进度条 -->
+          <div class="percent">
+            <div class="tips">团队出借进度49999.58元
+              <span class="arrow"></span>
+            </div>
+          </div>
           <div class="circle-group percent-circle">
               <!-- <span class="circle" style="visibility: visible"></span>
               <span class="circle" style="visibility: visible"></span>
@@ -122,7 +142,7 @@
   <script>
   
     let data =  {
-      "groupProgress": 1500,
+      "groupProgress": 500,
       "level": [
           1000,
           2000,
@@ -136,9 +156,9 @@
     let $percentCicle = $progressWrapper.querySelector('.percent-circle')
     let $percent = $progressWrapper.querySelector('.percent')
 
-    createCircles(data.level, data.groupProgress)
+    render(data.level, data.groupProgress)
 
-    function createCircles (level = [], groupProgress = 0) {
+    function render (level = [], groupProgress = 0) {
       level.unshift(0)
       let fragment = document.createDocumentFragment()
       for (let i = 0, l = level.length; i < l; i++) {
@@ -157,6 +177,19 @@
         fragmentCloneChildren[i].style.visibility = 'visible'
       }
       $percentCicle.appendChild(fragmentClone)
+      console.log(percent * 100)
+
+      ;(function () {
+        let $arrow = $percent.querySelector('.arrow')
+        if (percent * 100 < 50) {
+          let $tips = $percent.querySelector('.tips')
+          $tips.style.transform = 'translateX(100%)'
+          $arrow.classList.add('left-arrow')
+
+        } else {
+          $arrow.classList.add('right-arrow')
+        }
+      })()
 
       $percent.style.width = `${percent * 100}%`
       $levelCircle.appendChild(fragment)

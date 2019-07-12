@@ -85,10 +85,12 @@
     right: 0;
     top: -0.8rem;
     background-color: rgb(255, 187, 79);
-    width: 2.5rem;
+    width: auto;
     height: .44rem;
+    padding: 0 .1rem;
     color: #fff;
     text-align: center;
+    white-space: nowrap;
   }
   .tips .arrow {
     position: absolute;
@@ -122,7 +124,7 @@
           </div>
           <!-- 进度条 -->
           <div class="percent">
-            <div class="tips">团队出借进度49999.58元
+            <div class="tips">团队出借进度<span class="amount">0</span>元
               <span class="arrow"></span>
             </div>
           </div>
@@ -158,29 +160,35 @@
 
     render(data.level, data.groupProgress)
 
+
     function render (level = [], groupProgress = 0) {
-      level.unshift(0)
+      level.unshift(0)  // 在level里添加0
       let fragment = document.createDocumentFragment()
       for (let i = 0, l = level.length; i < l; i++) {
-        fragment.appendChild(createCircle(level[i]))
+        fragment.appendChild(createCircle(level[i]))  // 创始level的DOM元素
       }
       
+      let percent = (groupProgress / level[level.length - 1]) // 整体进度
 
-      let percent = (groupProgress / level[level.length - 1])
+      let maxIndex = Math.floor(percent / (1 / (level.length - 1))) // 计算圆圈进度的最大索引
 
-      let maxIndex = Math.floor(percent / (1 / (level.length - 1)))
-      console.log(maxIndex)
 
-      let fragmentClone = fragment.cloneNode(true)
-      let fragmentCloneChildren = fragmentClone.children
-      for (let i = 0; i <= maxIndex; i++) {
-        fragmentCloneChildren[i].style.visibility = 'visible'
-      }
-      $percentCicle.appendChild(fragmentClone)
-      console.log(percent * 100)
 
       ;(function () {
+        // 创建圆圈进度条
+        let fragmentClone = fragment.cloneNode(true)
+        let fragmentCloneChildren = fragmentClone.children
+        for (let i = 0; i <= maxIndex; i++) {
+          fragmentCloneChildren[i].style.visibility = 'visible'
+        }
+        $percentCicle.appendChild(fragmentClone)
+        console.log(percent * 100)
+      })()
+
+      ;(function () {
+        let $amount = $percent.querySelector('.amount')
         let $arrow = $percent.querySelector('.arrow')
+        $amount.innerHTML = groupProgress
         if (percent * 100 < 50) {
           let $tips = $percent.querySelector('.tips')
           $tips.style.transform = 'translateX(100%)'
@@ -195,7 +203,9 @@
       $levelCircle.appendChild(fragment)
     }
 
-
+    /**
+     * 创建圆圈
+     */
     function createCircle (name) {
       let node = createElement(
         'span', 
@@ -219,6 +229,9 @@
       return document.createTextNode(text)
     }
 
+    /**
+     * 创建元素
+     */
     function createElement (tag, props = {}, children =[]) {
       let node = document.createElement(tag)
       for (let p in props) {

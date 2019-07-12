@@ -14,10 +14,15 @@
       font-size: 14px;
     }
 
+
   .progress-wrapper {
+  }
+  .progress-inner {
+    position: relative;
     width: 6.3rem;
     height: auto;
-    overflow: hidden;
+    margin: 0 auto;
+    padding: .75rem 0 .4rem;
   }
   .progress-container {
     background-color: rgb(173, 207, 151);
@@ -74,17 +79,12 @@
     width: .14rem;
     height: .14rem;
   }
-  .top-container {
-    position: relative;
-    width: 100%;
-    height: 1rem;
-  }
-  .top-container .tips {
+  .tips {
     display: block;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    transform: translateX(-50%);
     background-color: rgb(255, 187, 79);
     position: absolute;
     width: 2.5rem;
@@ -96,46 +96,110 @@
 </head>
 <body>
   <div class="progress-wrapper">
-    <div class="top-container">
-        <div class="tips">团队出借进度49999.58元</div>
-    </div>
-    <div class="progress-container">
-      <div class="progress">
-        <div class="circle-group">
-            <span class="circle">
-              <span class="name">0元</span>
-            </span>
-            <span class="circle">
-              <span class="name">5000元</span>
-            </span>
-            <span class="circle">
-              <span class="name">10000元</span>
-            </span>
-            <span class="circle">
-              <span class="name">20000元</span>
-            </span>
-            <span class="circle">
-                <span class="name">30000元</span>
-            </span>
-            <span class="circle">
-                <span class="name">50000元</span>
-            </span>
-        </div>
-        <div class="percent">
-            <span class="circle"></span>
-            <span class="circle"></span>
-        </div>
-        <div class="circle-group percent-circle">
-            <span class="circle" style="visibility: visible"></span>
-            <span class="circle" style="visibility: visible"></span>
-            <span class="circle"></span>
-            <span class="circle"></span>
-            <span class="circle"></span>
-            <span class="circle"></span>
+    <div class="progress-inner">
+      <div class="tips">团队出借进度49999.58元</div>
+      <div class="progress-container">
+        <div class="progress">
+          <div class="circle-group level-circle">
+              <!-- <span class="circle">
+                <span class="name">0元</span>
+              </span> -->
+          </div>
+          <div class="percent"></div>
+          <div class="circle-group percent-circle">
+              <!-- <span class="circle" style="visibility: visible"></span>
+              <span class="circle" style="visibility: visible"></span>
+              <span class="circle"></span>
+              <span class="circle"></span>
+              <span class="circle"></span>
+              <span class="circle"></span> -->
+          </div>
         </div>
       </div>
+        
     </div>
-      
   </div>
+  <script>
+  
+    let data =  {
+      "groupProgress": 1500,
+      "level": [
+          1000,
+          2000,
+          3000
+      ],
+      "notEnough": "2"
+    }
+
+    let $progressWrapper = document.querySelector('.progress-wrapper')
+    let $levelCircle = $progressWrapper.querySelector('.level-circle')
+    let $percentCicle = $progressWrapper.querySelector('.percent-circle')
+    let $percent = $progressWrapper.querySelector('.percent')
+
+    createCircles(data.level, data.groupProgress)
+
+    function createCircles (level = [], groupProgress = 0) {
+      level.unshift(0)
+      let fragment = document.createDocumentFragment()
+      for (let i = 0, l = level.length; i < l; i++) {
+        fragment.appendChild(createCircle(level[i]))
+      }
+      
+
+      let percent = (groupProgress / level[level.length - 1])
+
+      let maxIndex = Math.floor(percent / (1 / (level.length - 1)))
+      console.log(maxIndex)
+
+      let fragmentClone = fragment.cloneNode(true)
+      let fragmentCloneChildren = fragmentClone.children
+      for (let i = 0; i <= maxIndex; i++) {
+        fragmentCloneChildren[i].style.visibility = 'visible'
+      }
+      $percentCicle.appendChild(fragmentClone)
+
+      $percent.style.width = `${percent * 100}%`
+      $levelCircle.appendChild(fragment)
+    }
+
+
+    function createCircle (name) {
+      let node = createElement(
+        'span', 
+        { className: 'circle'}, 
+        [
+          createElement(
+            'span',
+            {
+              className: 'name'
+            },
+            [
+              createTextNode(name)
+            ]
+          )
+        ]
+      )
+      return node
+    }
+    
+    function createTextNode (text) {
+      return document.createTextNode(text)
+    }
+
+    function createElement (tag, props = {}, children =[]) {
+      let node = document.createElement(tag)
+      for (let p in props) {
+        node[p] = props[p]
+      }
+
+      let fragment = document.createDocumentFragment()
+      for (let i = 0, l = children.length; i < l; i++) {
+        fragment.appendChild(children[i])
+      }
+      node.appendChild(fragment)
+
+      return node
+    }
+</script>
 </body>
 </html>

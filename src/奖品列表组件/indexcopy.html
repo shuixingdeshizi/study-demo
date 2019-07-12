@@ -179,7 +179,6 @@
     }
     if (children && children.length > 0) {
       children.forEach(child => {
-        console.log(child)
         node.appendChild(child)
       })
     }
@@ -258,7 +257,6 @@
   let frag = document.createDocumentFragment()
   list.forEach(item => {
     let itemNode = createPrizeBlock(item.name, item.takeRule, item.prizeImg, item.prizeStatus)
-    console.log(item)
     frag.appendChild(itemNode)
   })
 

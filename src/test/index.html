@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <style>
+  </style>
+  <ul register-type="prize-list" id="iv8x" data-activity-code="" class="list">
+  </ul>
+  <script>var items = document.querySelectorAll('#i4oh, #iv8x');
+    for (var i = 0, len = items.length; i < len; i++) {
+      (function(){
+        var activityCode = '';
+        $.ajax({
+          type: 'POST',
+          url: 'http://rap.9fprivate.com/mockjsdata/308/travel/PrizeList',
+          data: {
+            code: activityCode
+          }
+          ,
+          dataType: 'json',
+          success: function success(res) {
+            var list = res.data.list;
+            var domList = createDomList(list);
+            document.querySelector('.list').appendChild(domList);
+          }
+          ,
+          error: function error(err) {
+            console.log(err.message);
+          }
+        }
+              );
+              debugger
+        let list = [
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            },
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            },
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            },
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            },
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            },
+            {
+                "id": 73474,
+                "name": "测试内容788r",
+                "prizeImg": "http://pic60.nipic.com/pic/20150203/14812749_123634741000_4.jpg",
+                "prizeStatus": 82810,
+                "takeRule": "测试内容yc90"
+            }
+        ]
+              var domList = createDomList(list);
+            document.querySelector('.list').innerHTML = ''
+            document.querySelector('.list').appendChild(domList);
+        function createDomList() {
+          var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+          var frag = document.createDocumentFragment();
+          list.forEach(function (item) {
+            var itemNode = createPrizeBlock(item.name, item.takeRule, item.prizeImg, item.prizeStatus);
+            frag.appendChild(itemNode);
+          }
+                      );
+          return frag;
+        }
+        function createElement(tag, props, children) {
+          var node = document.createElement(tag);
+          for (var p in props) {
+            node[p] = props[p];
+          }
+          if (children && children.length > 0) {
+            children.forEach(function (child) {
+              node.appendChild(child);
+            }
+                            );
+          }
+          return node;
+        }
+        function createImage() {
+          var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+          };
+          var image = new Image();
+          for (var p in props) {
+            image[p] = props[p];
+          }
+          return image;
+        }
+        function createTextNode(text) {
+          return document.createTextNode(text);
+        }
+        function createPrizeBlock(name, takeRule, imgSrc, status) {
+          return createElement('li', {
+            'className': 'item'
+          }
+                               , [createImage({
+                                 src: imgSrc,
+                                 className: 'pic'
+                               }
+                                             ), createElement('div', {
+                                 className: 'info'
+                               }
+                                                              , [createElement('div', {
+                                                                className: 'name'
+                                                              }
+                                                                               , [createTextNode(name)]), createElement('div', {
+                                                                className: 'desc'
+                                                              }
+                                                                                                                        , [createElement('div', {
+                                                                                                                          className: 'subTitle'
+                                                                                                                        }
+                                                                                                                                         , [createTextNode(takeRule)]), createElement('div', {
+                                                                                                                          className: 'jump'
+                                                                                                                        }
+  , [createTextNode('领取')])])])], undefined, undefined);
+        }
+      }
+       .bind(items[i]))();
+    }
+  </script>
+</body>
+</html>
